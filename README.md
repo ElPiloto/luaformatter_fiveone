@@ -1,5 +1,12 @@
 # Lua Formatter
 
+**This is a fork of:**
+https://github.com/LuaDevelopmentTools/luaformatter
+
+with a **critical** patch to enable formatting from stdin from:
+
+https://github.com/shuxiao9058/luaformatter
+
 This library beautify Lua code:
 
 * Indent block
@@ -17,7 +24,7 @@ It is plain _Lua 5.1_.
 ## Installation
 
 ```sh
-$ luarocks install --local formatter
+$ luarocks install --local formatterfiveone
 ```
 
 ## How does it work?
@@ -48,7 +55,7 @@ do
 local var =
 42
 end
-$ luaformatter sample.lua
+$ luaformatterfiveone sample.lua
 do
   local var =
     42
@@ -58,8 +65,9 @@ end
 Want more options?
 
 ```sh
-$ luaformatter --help
+$ luaformatterfiveone --help
 Formats Lua code.
+  -i, --stdin Read buffer from stdin.
   -a, --autosave Flush formatted Lua in given file instead of stdout.
   -s, --spaces (default 2) Spaces to use as indentation.
   -t, --tabs   (default 0) Tabulation(s) to use as indentation.

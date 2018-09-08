@@ -69,15 +69,14 @@ local formatter = require 'formatter'
 -- Read from stdin
 if args.stdin then
   code = io.read("*a")
-    -- Format source
-    local formatted, errormessage = formatter.indentcode(code, delimiter, true,
-      indentation)
-
-     if formatted then
-      print( formatted )
-     else
-            print(string.format('Unable to format stdin:\n%s', errormessage))
-     end
+  -- Format source
+  local formatted, errormessage = formatter.indentcode(code, delimiter, true,
+    indentation)
+  if formatted then
+    print( formatted )
+  else
+    lapp.error(string.format('Unable to format stdin:\n%s', errormessage), true)
+  end
 else
   for _, filename in ipairs(args) do
 
@@ -105,7 +104,8 @@ else
         io.write(formatted)
       end
     else
-      print(string.format('Unable to format `%s`:\n%s', filename, errormessage))
+      lapp.error(string.format('Unable to format `%s`:\n%s', filename, errormessage), true)
     end
   end
 end
+
